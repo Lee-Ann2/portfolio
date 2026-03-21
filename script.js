@@ -1,62 +1,116 @@
-const canvas = document.getElementById('particleCanvas');
+const canvas = document.getElementById('iconCanvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    let particles = [];
+    let icons = [];
+    
+    const iconList = [
+        'fab fa-js', 'fab fa-react', 'fab fa-python', 'fab fa-java', 
+        'fab fa-node-js', 'fab fa-aws', 'fab fa-docker', 'fab fa-github',
+        'fab fa-linux', 'fab fa-android', 'fab fa-apple', 'fas fa-database',
+        'fas fa-cloud', 'fas fa-code', 'fas fa-chart-line', 'fas fa-mobile-alt',
+        'fas fa-laptop-code', 'fas fa-server', 'fas fa-shield-alt', 'fas fa-cogs',
+        'fas fa-brain', 'fas fa-robot', 'fas fa-chart-bar', 'fas fa-project-diagram',
+        'fas fa-network-wired', 'fas fa-microchip', 'fas fa-cube', 'fas fa-chart-pie'
+    ];
+    
+    const iconSymbols = [
+        'JS', '⚛️', '🐍', '☕', '⬢', '☁️', '🐳', '🐙',
+        '🐧', '📱', '🍎', '🗄️', '☁️', '</>', '📈', '📱',
+        '💻', '🖥️', '🔒', '⚙️', '🧠', '🤖', '📊', '🔀',
+        '🌐', '🔌', '🧊', '📊'
+    ];
+    
+    class FloatingIcon {
+        constructor(x, y, icon, size, speedX, speedY, rotation, rotationSpeed, opacity) {
+            this.x = x;
+            this.y = y;
+            this.icon = icon;
+            this.size = size;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.rotation = rotation;
+            this.rotationSpeed = rotationSpeed;
+            this.opacity = opacity;
+            this.originalOpacity = opacity;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.rotation += this.rotationSpeed;
+            
+            if (this.x < -50) this.x = canvas.width + 50;
+            if (this.x > canvas.width + 50) this.x = -50;
+            if (this.y < -50) this.y = canvas.height + 50;
+            if (this.y > canvas.height + 50) this.y = -50;
+            
+            this.opacity = this.originalOpacity + Math.sin(Date.now() * 0.002 * this.rotationSpeed) * 0.15;
+        }
+        
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.font = `${this.size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
+            ctx.fillText(this.icon, 0, 0);
+            ctx.restore();
+        }
+    }
     
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
     
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 3 + 1;
-            this.speedX = Math.random() * 2 - 1;
-            this.speedY = Math.random() * 2 - 1;
-            this.color = `rgba(255, 255, 255, ${Math.random() * 0.5})`;
-        }
+    function initIcons() {
+        icons = [];
+        const iconCount = Math.min(80, Math.floor(window.innerWidth * window.innerHeight / 15000));
         
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+        for (let i = 0; i < iconCount; i++) {
+            const icon = iconSymbols[Math.floor(Math.random() * iconSymbols.length)];
+            const size = Math.random() * 28 + 18; // 18-46px
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            const speedX = (Math.random() - 0.5) * 0.5;
+            const speedY = (Math.random() - 0.5) * 0.3;
+            const rotation = Math.random() * Math.PI * 2;
+            const rotationSpeed = (Math.random() - 0.5) * 0.02;
+            const opacity = Math.random() * 0.4 + 0.2;
             
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        }
-        
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            icons.push(new FloatingIcon(x, y, icon, size, speedX, speedY, rotation, rotationSpeed, opacity));
         }
     }
     
-    function initParticles() {
-        particles = [];
-        for (let i = 0; i < 100; i++) {
-            particles.push(new Particle());
-        }
-    }
-    
-    function animateParticles() {
+    function animateIcons() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(particle => {
-            particle.update();
-            particle.draw();
+        
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, 'rgba(102, 126, 234, 0.1)');
+        gradient.addColorStop(1, 'rgba(118, 75, 162, 0.1)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        icons.forEach(icon => {
+            icon.update();
+            icon.draw();
         });
-        requestAnimationFrame(animateParticles);
+        
+        requestAnimationFrame(animateIcons);
     }
     
     resizeCanvas();
-    initParticles();
-    animateParticles();
+    initIcons();
+    animateIcons();
     
     window.addEventListener('resize', () => {
         resizeCanvas();
-        initParticles();
+        initIcons();
     });
 }
 
@@ -141,7 +195,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
