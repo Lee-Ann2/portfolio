@@ -3,16 +3,6 @@ if (canvas) {
     const ctx = canvas.getContext('2d');
     let icons = [];
     
-    const iconList = [
-        'fab fa-js', 'fab fa-react', 'fab fa-python', 'fab fa-java', 
-        'fab fa-node-js', 'fab fa-aws', 'fab fa-docker', 'fab fa-github',
-        'fab fa-linux', 'fab fa-android', 'fab fa-apple', 'fas fa-database',
-        'fas fa-cloud', 'fas fa-code', 'fas fa-chart-line', 'fas fa-mobile-alt',
-        'fas fa-laptop-code', 'fas fa-server', 'fas fa-shield-alt', 'fas fa-cogs',
-        'fas fa-brain', 'fas fa-robot', 'fas fa-chart-bar', 'fas fa-project-diagram',
-        'fas fa-network-wired', 'fas fa-microchip', 'fas fa-cube', 'fas fa-chart-pie'
-    ];
-    
     const iconSymbols = [
         'JS', '⚛️', '🐍', '☕', '⬢', '☁️', '🐳', '🐙',
         '🐧', '📱', '🍎', '🗄️', '☁️', '</>', '📈', '📱',
@@ -55,10 +45,11 @@ if (canvas) {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.shadowBlur = 15;
-            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
+            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.3})`;
             ctx.globalAlpha = this.opacity;
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.7})`;
-            ctx.fillText(this.icon, 0, 0);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.8})`;
+            ctx.lineWidth = 2;
+            ctx.strokeText(this.icon, 0, 0);
             ctx.restore();
         }
     }
@@ -74,7 +65,7 @@ if (canvas) {
         
         for (let i = 0; i < iconCount; i++) {
             const icon = iconSymbols[Math.floor(Math.random() * iconSymbols.length)];
-            const size = Math.random() * 28 + 18; // 18-46px
+            const size = Math.random() * 28 + 18;
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height;
             const speedX = (Math.random() - 0.5) * 0.5;
@@ -89,12 +80,6 @@ if (canvas) {
     
     function animateIcons() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-        gradient.addColorStop(0, 'rgba(102, 126, 234, 0.1)');
-        gradient.addColorStop(1, 'rgba(118, 75, 162, 0.1)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         icons.forEach(icon => {
             icon.update();
@@ -195,6 +180,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
 const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.querySelector('.nav-menu');
 

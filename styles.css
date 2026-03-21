@@ -5,9 +5,9 @@
 }
 
 :root {
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --primary-light: #818cf8;
+    --primary: #4a2a7a;
+    --primary-dark: #3a1f5a;
+    --primary-light: #6b3e9e;
     --secondary: #ec489a;
     --accent: #14b8a6;
     --dark: #0f172a;
@@ -34,11 +34,16 @@
 }
 
 body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: var(--bg-light);
     color: var(--text-light);
     transition: var(--transition);
     overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
 
 body.dark-mode {
@@ -47,7 +52,7 @@ body.dark-mode {
 }
 
 .landing-page {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a2a7a 0%, #2a1a4a 100%);
     position: relative;
     overflow-x: hidden;
 }
@@ -83,7 +88,8 @@ body.dark-mode {
 
 .logo-text {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     text-shadow: 0 0 20px rgba(255,255,255,0.5);
 }
@@ -105,6 +111,7 @@ body.dark-mode {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
     transition: var(--transition);
     opacity: 0.9;
 }
@@ -143,6 +150,7 @@ body.dark-mode {
     align-items: center;
     gap: 0.5rem;
     animation: fadeIn 1s ease;
+    font-family: 'Roboto', sans-serif;
 }
 
 .badge-pulse {
@@ -162,7 +170,7 @@ body.dark-mode {
 .hero-text h1 {
     color: white;
     font-size: 4rem;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
@@ -176,6 +184,7 @@ body.dark-mode {
     margin: 1.5rem 0;
     font-size: 1.5rem;
     color: rgba(255,255,255,0.9);
+    font-family: 'Roboto', sans-serif;
 }
 
 .typewriter-text {
@@ -193,6 +202,7 @@ body.dark-mode {
     color: rgba(255,255,255,0.9);
     font-size: 1.125rem;
     line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
 }
 
 .hero-cta {
@@ -207,6 +217,7 @@ body.dark-mode {
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
@@ -248,13 +259,15 @@ body.dark-mode {
 
 .stat-number {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
     color: white;
 }
 
 .stat-label {
     color: rgba(255,255,255,0.8);
     font-size: 0.875rem;
+    font-family: 'Roboto', sans-serif;
 }
 
 .scroll-indicator {
@@ -262,6 +275,7 @@ body.dark-mode {
     color: white;
     margin: 4rem 0;
     animation: bounce 2s infinite;
+    font-family: 'Roboto', sans-serif;
 }
 
 .scroll-indicator span {
@@ -303,6 +317,12 @@ body.dark-mode {
 .about-card h3 {
     margin-bottom: 1rem;
     font-size: 1.25rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-card p {
+    font-family: 'Roboto', sans-serif;
+    color: var(--gray);
 }
 
 .tech-stack {
@@ -314,6 +334,7 @@ body.dark-mode {
 .tech-stack h2 {
     margin-bottom: 2rem;
     color: var(--dark);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .tech-marquee {
@@ -334,6 +355,7 @@ body.dark-mode {
     border-radius: 50px;
     font-weight: 500;
     color: var(--primary);
+    font-family: 'Roboto', sans-serif;
 }
 
 .landing-footer {
@@ -356,6 +378,11 @@ body.dark-mode {
 .footer-info h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-info p {
+    font-family: 'Roboto', sans-serif;
 }
 
 .footer-links {
@@ -370,6 +397,7 @@ body.dark-mode {
     align-items: center;
     gap: 0.5rem;
     transition: var(--transition);
+    font-family: 'Roboto', sans-serif;
 }
 
 .contact-link:hover {
@@ -380,6 +408,7 @@ body.dark-mode {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Roboto', sans-serif;
 }
 
 @keyframes fadeIn {
@@ -451,27 +480,6 @@ body.dark-mode {
     }
     100% {
         transform: translateX(-50%);
-    }
-}
-
-@keyframes floatIcon {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-20px) rotate(5deg);
-    }
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
-}
-
-@keyframes fadeInOut {
-    0%, 100% {
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 0.8;
     }
 }
 
