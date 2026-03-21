@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khazimla Mfenyana | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body class="portfolio-page">
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
+    <nav class="portfolio-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span>Khazimla.dev</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="portfolio-container">
+        <section class="portfolio-hero" id="about">
+            <div class="hero-wrapper">
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-astronaut"></i>
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                <div class="hero-info">
+                    <div class="greeting">👋 Hello, I'm</div>
+                    <h1 class="hero-name">Khazimla Zamajola Lee-Ann Mfenyana</h1>
+                    <div class="hero-title">Software Engineer & Full Stack Developer</div>
+                    <p class="hero-bio">
+                        Passionate software engineer with 4+ years of experience building scalable web and mobile applications. 
+                        I specialize in creating elegant solutions that solve complex problems and deliver exceptional user experiences.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn-primary">Get in Touch</a>
+                        <a href="#" id="downloadResume" class="btn-secondary">Download Resume</a>
+                    </div>
+                    <div class="hero-social">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:kmfenyana2@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+                <p>Technologies and tools I work with</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="95">React</div>
+                        <div class="skill-item" data-skill="90">TypeScript</div>
+                        <div class="skill-item" data-skill="88">React Native</div>
+                        <div class="skill-item" data-skill="85">Next.js</div>
+                        <div class="skill-item" data-skill="92">TailwindCSS</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="88">Node.js</div>
+                        <div class="skill-item" data-skill="85">Python</div>
+                        <div class="skill-item" data-skill="82">Java</div>
+                        <div class="skill-item" data-skill="87">GraphQL</div>
+                        <div class="skill-item" data-skill="90">PostgreSQL</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>DevOps & Cloud</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="80">Docker</div>
+                        <div class="skill-item" data-skill="75">Kubernetes</div>
+                        <div class="skill-item" data-skill="85">AWS</div>
+                        <div class="skill-item" data-skill="78">CI/CD</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="projects-section">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p>Some of my best work</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>FinTech Mobile App</h3>
+                        <p>A comprehensive mobile banking solution with real-time transactions, biometric authentication, and AI-powered financial insights.</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>TypeScript</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link">Source Code <i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cloud Native Platform</h3>
+                        <p>Enterprise-grade microservices platform with auto-scaling, service mesh, and comprehensive monitoring using Kubernetes.</p>
+                        <div class="project-tech">
+                            <span>Docker</span>
+                            <span>Kubernetes</span>
+                            <span>Python</span>
+                            <span>FastAPI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link">Source Code <i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analytics Dashboard</h3>
+                        <p>Interactive real-time dashboard for business intelligence with customizable widgets and predictive analytics.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>D3.js</span>
+                            <span>WebSocket</span>
+                            <span>Express</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link">Source Code <i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="experience" class="experience-section">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+                <p>Where I've made an impact</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Present</div>
+                        <h3>Senior Software Engineer</h3>
+                        <h4>TechCorp Innovations</h4>
+                        <p>Leading a team of 5 developers to build enterprise applications. Architected microservices that improved system performance by 40% and reduced deployment time by 60%.</p>
+                        <ul>
+                            <li>Implemented CI/CD pipeline reducing deployment time from 2 hours to 15 minutes</li>
+                            <li>Mentored junior developers and conducted code reviews</li>
+                            <li>Migrated legacy monolith to microservices architecture</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2022</div>
+                        <h3>Full Stack Developer</h3>
+                        <h4>Digital Solutions Inc.</h4>
+                        <p>Developed and maintained 10+ client projects including e-commerce platforms, mobile apps, and content management systems.</p>
+                        <ul>
+                            <li>Built responsive web applications with React and Node.js</li>
+                            <li>Optimized database queries reducing load time by 50%</li>
+                            <li>Collaborated with UX designers to implement pixel-perfect interfaces</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ai-assistant-section">
+            <div class="section-header">
+                <h2><i class="fas fa-robot"></i> AI Career Assistant</h2>
+                <p>Ask me anything about my experience and skills</p>
+            </div>
+            <div class="chatbot-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <div class="message-bubble">
+                            👋 Hi! I'm Khazimla's AI assistant. Ask me about her skills, experience, education, or projects!
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="userInput" placeholder="Type your question here..." class="chat-input">
+                    <button id="sendMessage" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="contact-section">
+            <div class="section-header">
+                <h2>Let's Connect</h2>
+                <p>Interested in working together? Let's talk!</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:kmfenyana2@gmail.com">kmfenyana2@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-github"></i>
+                        <h3>GitHub</h3>
+                        <a href="#">github.com/khazimla</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <a href="#">linkedin.com/in/khazimla</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>South Africa</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="portfolio-footer">
+        <p>© 2025 Khazimla Mfenyana. All rights reserved. Built with <i class="fas fa-heart"></i> using modern web technologies.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>
