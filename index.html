@@ -3,183 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khazimla Mfenyana - Software Engineer</title>
+    <title>Khazimla Mfenyana | Software Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-sun"></i>
-        <i class="fas fa-moon"></i>
-    </button>
+<body class="landing-page">
+    <canvas id="particleCanvas"></canvas>
+    
+    <div class="landing-container">
+        <nav class="landing-nav">
+            <div class="logo">
+                <span class="logo-text">KM</span>
+                <span class="logo-dot"></span>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="portfolio.html" class="nav-link portfolio-link">Portfolio <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </nav>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Header Section -->
-        <header>
-            <div class="profile-header">
-                <h1 class="glitch-text" data-text="Khazimla Zamajola Lee-Ann Mfenyana">Khazimla Zamajola Lee-Ann Mfenyana</h1>
-                <p class="subtitle">Software Engineer | Full Stack Developer</p>
-                <div class="contact-info">
-                    <a href="mailto:kmfenyana2@gmail.com"><i class="fas fa-envelope"></i> kmfenyana2@gmail.com</a>
-                    <a href="#"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <main class="hero-section">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                Available for opportunities
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="glow-text">
+                        <span class="line-1">Khazimla Mfenyana</span>
+                        <span class="line-2">Software Engineer</span>
+                    </h1>
+                    <div class="typewriter-wrapper">
+                        <span class="typewriter-text"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-description">
+                        I build exceptional digital experiences that solve real-world problems. 
+                        Specialized in full-stack development, mobile applications, and cloud architecture.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="portfolio.html" class="btn-primary">
+                            <span>View Full Portfolio</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn-secondary">
+                            <i class="fas fa-paper-plane"></i>
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-count="4">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-count="25">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-count="15">0</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
                 </div>
             </div>
-        </header>
+        </main>
 
-        <!-- AI Chatbot Section -->
-        <section class="ai-section">
-            <div class="section-title">
-                <h2><i class="fas fa-robot"></i> Chat with My AI Assistant</h2>
-                <p>Ask me anything about Khazimla's experience and skills!</p>
-            </div>
-            <div class="chat-container" id="chatContainer">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        <div class="message-content">
-                            Hi! I'm Khazimla's AI assistant. Ask me about her skills, experience, or projects!
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-input-container">
-                    <input type="text" id="userInput" placeholder="Type your question here..." class="chat-input">
-                    <button id="sendMessage" class="send-btn"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </section>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
 
-        <!-- Skills Section with Fun Visuals -->
-        <section class="skills-section">
-            <h2><i class="fas fa-code"></i> Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card" data-skill="HTML">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%"></div>
-                    </div>
+        <section id="about" class="about-preview">
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Clean Code</h3>
+                    <p>Writing maintainable, scalable, and well-documented code that stands the test of time.</p>
                 </div>
-                <div class="skill-card" data-skill="CSS">
-                    <i class="fab fa-css3-alt"></i>
-                    <span>CSS</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
+                <div class="about-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Fast Performance</h3>
+                    <p>Optimizing applications for maximum speed and scalability across all devices.</p>
                 </div>
-                <div class="skill-card" data-skill="JavaScript">
-                    <i class="fab fa-js"></i>
-                    <span>JavaScript</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 88%"></div>
-                    </div>
+                <div class="about-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Player</h3>
+                    <p>Collaborative mindset with experience leading teams and mentoring junior developers.</p>
                 </div>
-                <div class="skill-card" data-skill="TypeScript">
-                    <i class="fab fa-js"></i>
-                    <span>TypeScript</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 82%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-skill="Python">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-skill="Java">
-                    <i class="fab fa-java"></i>
-                    <span>Java</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-skill="React Native">
-                    <i class="fab fa-react"></i>
-                    <span>React Native</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 83%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-skill="SQL">
-                    <i class="fas fa-database"></i>
-                    <span>SQL</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 87%"></div>
-                    </div>
-                </div>
-                <div class="skill-card" data-skill="Docker">
-                    <i class="fab fa-docker"></i>
-                    <span>Docker</span>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%"></div>
-                    </div>
+                <div class="about-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Problem Solver</h3>
+                    <p>Analytical approach to solving complex technical challenges with elegant solutions.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section (Placeholder) -->
-        <section class="projects-section">
-            <h2><i class="fas fa-laptop-code"></i> Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>Mobile App Project</h3>
-                    <p>React Native application with real-time features</p>
-                    <div class="project-tags">
-                        <span>React Native</span>
-                        <span>TypeScript</span>
-                        <span>Node.js</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-cloud"></i></div>
-                    <h3>Cloud Platform</h3>
-                    <p>Dockerized microservices architecture</p>
-                    <div class="project-tags">
-                        <span>Docker</span>
-                        <span>Python</span>
-                        <span>SQL</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Data Analytics Dashboard</h3>
-                    <p>Interactive dashboard with real-time updates</p>
-                    <div class="project-tags">
-                        <span>JavaScript</span>
-                        <span>HTML/CSS</span>
-                        <span>SQL</span>
-                    </div>
+        <section class="tech-stack">
+            <h2>Technologies I Work With</h2>
+            <div class="tech-marquee">
+                <div class="tech-track">
+                    <span>JavaScript</span><span>TypeScript</span><span>React</span><span>React Native</span>
+                    <span>Node.js</span><span>Python</span><span>Java</span><span>SQL</span>
+                    <span>Docker</span><span>Kubernetes</span><span>AWS</span><span>GraphQL</span>
                 </div>
             </div>
         </section>
 
-        <!-- CV Upload and Download Section -->
-        <section class="cv-section">
-            <h2><i class="fas fa-file-alt"></i> Resume</h2>
-            <div class="cv-container">
-                <div class="cv-upload">
-                    <h3>Update Resume</h3>
-                    <p>Upload your latest CV (PDF format)</p>
-                    <div class="upload-area" id="uploadArea">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <p>Drag & drop or click to upload</p>
-                        <input type="file" id="cvUpload" accept=".pdf" hidden>
-                    </div>
+        <footer class="landing-footer" id="contact">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Ready to build something great?</h3>
+                    <p>Let's collaborate and create exceptional digital experiences together.</p>
                 </div>
-                <div class="cv-download">
-                    <h3>Download Resume</h3>
-                    <p>Get Khazimla's latest resume</p>
-                    <a href="#" id="downloadCV" class="download-btn">
-                        <i class="fas fa-download"></i> Download CV
+                <div class="footer-links">
+                    <a href="mailto:kmfenyana2@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i>
+                        kmfenyana2@gmail.com
                     </a>
-                    <p class="cv-note" id="cvNote">No CV uploaded yet. Please upload a PDF first.</p>
+                    <a href="#" class="contact-link">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="#" class="contact-link">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
                 </div>
             </div>
-        </section>
+            <div class="footer-copyright">
+                <p>© 2025 Khazimla Mfenyana. Crafted with passion.</p>
+            </div>
+        </footer>
     </div>
 
     <script src="script.js"></script>
