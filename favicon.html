@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1a1a2e;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        .download-btn {
+            background: #4a2a7a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .download-btn:hover {
+            background: #6b3e9e;
+        }
+        pre {
+            text-align: left;
+            background: #0f0f1f;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #9b6b9b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎨 Favicon Generator</h2>
+        <p>Download the favicon files and add them to your project root folder</p>
+        
+        <canvas id="faviconCanvas" width="64" height="64"></canvas>
+        <canvas id="faviconCanvas32" width="32" height="32"></canvas>
+        
+        <div>
+            <button class="download-btn" onclick="downloadFavicon(64)">Download favicon.ico (64x64)</button>
+            <button class="download-btn" onclick="downloadFavicon(32)">Download favicon-32x32.png</button>
+            <button class="download-btn" onclick="downloadFavicon(16)">Download favicon-16x16.png</button>
+        </div>
+        
+        <h3>📋 Add this code to your HTML files in the &lt;head&gt; section:</h3>
+        <pre id="codeBlock"></pre>
+        
+        <h3>💡 Alternative: Use this inline SVG (works without files)</h3>
+        <pre>&lt;link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%234a2a7a'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='monospace'%3E%3C/K%3E%3C/text%3E%3C/svg%3E"&gt;</pre>
+    </div>
+
+    <script>
+        function drawFavicon(ctx, size) {
+            ctx.clearRect(0, 0, size, size);
+            
+            ctx.fillStyle = '#4a2a7a';
+            ctx.fillRect(0, 0, size, size);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.45}px "Courier New", monospace`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('KM', size/2, size/2);
+            
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = size * 0.03;
+            ctx.strokeRect(size * 0.1, size * 0.1, size * 0.8, size * 0.8);
+        }
+        
+        const canvas64 = document.getElementById('faviconCanvas');
+        const ctx64 = canvas64.getContext('2d');
+        drawFavicon(ctx64, 64);
+        
+        const canvas32 = document.getElementById('faviconCanvas32');
+        const ctx32 = canvas32.getContext('2d');
+        drawFavicon(ctx32, 32);
+        
+        function downloadFavicon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#4a2a7a';
+            ctx.fillRect(0, 0, size, size);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.45}px "Courier New", monospace`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('KM', size/2, size/2);
+            
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = size * 0.03;
+            ctx.strokeRect(size * 0.1, size * 0.1, size * 0.8, size * 0.8);
+            
+            const link = document.createElement('a');
+            if (size === 64) {
+                link.download = 'favicon.ico';
+            } else {
+                link.download = `favicon-${size}x${size}.png`;
+            }
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        const codeBlock = document.getElementById('codeBlock');
+        codeBlock.textContent = `<!-- Add ALL of these to your HTML <head> section -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Or use this single line for inline SVG that always works -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%234a2a7a'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='monospace'%3EKM%3C/text%3E%3C/svg%3E">`;
+    </script>
+</body>
+</html>
