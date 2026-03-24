@@ -161,18 +161,14 @@ if (userInput) {
 
 const downloadResume = document.getElementById('downloadResume');
 if (downloadResume) {
-    downloadResume.addEventListener('click', e => {
+    downloadResume.addEventListener('click', (e) => {
         e.preventDefault();
-        const content = `<html><head><title>Khazimla Mfenyana — CV</title><style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;padding:0 2rem;color:#111;line-height:1.6}h1{font-size:2rem;margin-bottom:0.25rem}h2{font-size:1.1rem;border-bottom:1px solid #ccc;padding-bottom:0.25rem;margin-top:2rem}h3{margin-bottom:0.1rem}ul{padding-left:1.25rem}li{margin-bottom:0.35rem}.meta{color:#555;font-size:0.9rem}.dates{font-family:monospace;font-size:0.85rem;color:#666}</style></head><body><h1>Khazimla Zamajola Lee-Ann Mfenyana</h1><p class="meta">Software Engineer &amp; Full Stack Developer | kmfenyana2@gmail.com | Cape Town, South Africa</p><h2>Professional Summary</h2><p>Results-driven Software Engineer with 4+ years of experience in full-stack development, mobile architecture, and cloud infrastructure. Passionate about building high-performance applications and mentoring developers.</p><h2>Technical Skills</h2><ul><li>Languages: JavaScript, TypeScript, Python, Java, SQL</li><li>Frontend: React, React Native, Next.js, TailwindCSS</li><li>Backend: Node.js, GraphQL, PostgreSQL, MongoDB</li><li>Cloud & DevOps: AWS, Docker, Kubernetes, CI/CD</li></ul><h2>Experience</h2><h3>Senior Software Engineer — TechCorp Innovations</h3><p class="dates">2022 – Present</p><ul><li>Led team of 5 engineers on enterprise applications</li><li>Architected microservices improving performance by 40%</li><li>Implemented CI/CD reducing deployment from 2hrs to 15min</li></ul><h3>Full Stack Developer — Digital Solutions Inc.</h3><p class="dates">2020 – 2022</p><ul><li>Built 10+ client projects: e-commerce, mobile apps, CMS</li><li>Optimised queries reducing load time by 50%</li></ul><h2>Education</h2><p>BSc Computer Science (Cum Laude) — University of Cape Town</p><h2>Certifications</h2><ul><li>AWS Certified Developer</li><li>Professional Scrum Master I</li></ul></body></html>`;
-        const blob = new Blob([content], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Khazimla_Mfenyana_CV.html';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        const link = document.createElement('a');
+        link.href = 'assets/CV_Khazimla_Mfenyana.pdf';
+        link.download = 'CV_Khazimla_Mfenyana.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     });
 }
 
