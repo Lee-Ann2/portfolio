@@ -1,191 +1,221 @@
-const canvas = document.getElementById('iconCanvas');
-if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let icons = [];
-    
-    const iconSymbols = [
-        'JS', '⚛️', '🐍', '☕', '⬢', '☁️', '🐳', '🐙',
-        '🐧', '📱', '🍎', '🗄️', '☁️', '</>', '📈', '📱',
-        '💻', '🖥️', '🔒', '⚙️', '🧠', '🤖', '📊', '🔀',
-        '🌐', '🔌', '🧊', '📊'
-    ];
-    
-    class FloatingIcon {
-        constructor(x, y, icon, size, speedX, speedY, rotation, rotationSpeed, opacity) {
-            this.x = x;
-            this.y = y;
-            this.icon = icon;
-            this.size = size;
-            this.speedX = speedX;
-            this.speedY = speedY;
-            this.rotation = rotation;
-            this.rotationSpeed = rotationSpeed;
-            this.opacity = opacity;
-            this.originalOpacity = opacity;
-        }
-        
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            this.rotation += this.rotationSpeed;
-            
-            if (this.x < -50) this.x = canvas.width + 50;
-            if (this.x > canvas.width + 50) this.x = -50;
-            if (this.y < -50) this.y = canvas.height + 50;
-            if (this.y > canvas.height + 50) this.y = -50;
-            
-            this.opacity = this.originalOpacity + Math.sin(Date.now() * 0.002 * this.rotationSpeed) * 0.15;
-        }
-        
-        draw() {
-            ctx.save();
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.rotation);
-            ctx.font = `${this.size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.3})`;
-            ctx.globalAlpha = this.opacity;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.8})`;
-            ctx.lineWidth = 2;
-            ctx.strokeText(this.icon, 0, 0);
-            ctx.restore();
-        }
+const cursorDot = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+if (cursorDot && cursorRing) {
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top = ringY + 'px';
+        requestAnimationFrame(animateCursor);
     }
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    function initIcons() {
-        icons = [];
-        const iconCount = Math.min(80, Math.floor(window.innerWidth * window.innerHeight / 15000));
-        
-        for (let i = 0; i < iconCount; i++) {
-            const icon = iconSymbols[Math.floor(Math.random() * iconSymbols.length)];
-            const size = Math.random() * 28 + 18;
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            const speedX = (Math.random() - 0.5) * 0.5;
-            const speedY = (Math.random() - 0.5) * 0.3;
-            const rotation = Math.random() * Math.PI * 2;
-            const rotationSpeed = (Math.random() - 0.5) * 0.02;
-            const opacity = Math.random() * 0.4 + 0.2;
-            
-            icons.push(new FloatingIcon(x, y, icon, size, speedX, speedY, rotation, rotationSpeed, opacity));
-        }
-    }
-    
-    function animateIcons() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        icons.forEach(icon => {
-            icon.update();
-            icon.draw();
+
+    animateCursor();
+
+    document.querySelectorAll('a, button, input, textarea, [role="button"]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorRing.style.transform = 'translate(-50%, -50%) scale(1.6)';
+            cursorRing.style.borderColor = 'rgba(232,255,0,0.7)';
         });
-        
-        requestAnimationFrame(animateIcons);
-    }
-    
-    resizeCanvas();
-    initIcons();
-    animateIcons();
-    
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initIcons();
+        el.addEventListener('mouseleave', () => {
+            cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorRing.style.borderColor = 'rgba(232,255,0,0.4)';
+        });
     });
 }
 
-const typewriterElement = document.querySelector('.typewriter-text');
-if (typewriterElement) {
+const typewriterEl = document.getElementById('typewriter');
+if (typewriterEl) {
     const texts = ['Full Stack Developer', 'Mobile App Specialist', 'Cloud Architect', 'Problem Solver'];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    function typeWriter() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-            typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-        
-        if (!isDeleting && charIndex === currentText.length) {
-            isDeleting = true;
-            setTimeout(typeWriter, 2000);
+    let idx = 0, charIdx = 0, deleting = false;
+
+    function type() {
+        const current = texts[idx];
+        typewriterEl.textContent = deleting
+            ? current.substring(0, charIdx - 1)
+            : current.substring(0, charIdx + 1);
+
+        deleting ? charIdx-- : charIdx++;
+
+        if (!deleting && charIdx === current.length) {
+            deleting = true;
+            setTimeout(type, 2200);
             return;
         }
-        
-        if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
+        if (deleting && charIdx === 0) {
+            deleting = false;
+            idx = (idx + 1) % texts.length;
         }
-        
-        setTimeout(typeWriter, isDeleting ? 50 : 100);
+        setTimeout(type, deleting ? 45 : 95);
     }
-    
-    typeWriter();
+
+    type();
 }
 
-const statNumbers = document.querySelectorAll('.stat-number');
-if (statNumbers.length) {
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-    
-    const counterObserver = new IntersectionObserver((entries) => {
+const statNums = document.querySelectorAll('.stat-num');
+if (statNums.length) {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const element = entry.target;
-                const target = parseInt(element.dataset.count);
+                const el = entry.target;
+                const target = parseInt(el.dataset.count);
                 let current = 0;
-                const increment = target / 50;
-                
-                const updateCounter = () => {
+                const step = target / 55;
+                const update = () => {
+                    current += step;
                     if (current < target) {
-                        current += increment;
-                        element.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
+                        el.textContent = Math.floor(current);
+                        requestAnimationFrame(update);
                     } else {
-                        element.textContent = target;
+                        el.textContent = target;
                     }
                 };
-                
-                updateCounter();
-                counterObserver.unobserve(element);
+                update();
+                observer.unobserve(el);
             }
         });
-    }, observerOptions);
-    
-    statNumbers.forEach(stat => counterObserver.observe(stat));
+    }, { threshold: 0.5 });
+    statNums.forEach(s => observer.observe(s));
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('.nav-menu');
-
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
 if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+    navMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => navMenu.classList.remove('active'));
     });
+}
+
+const chatMessages = document.getElementById('chatMessages');
+const userInput = document.getElementById('userInput');
+const sendButton = document.getElementById('sendMessage');
+
+const kb = {
+    skills: "Khazimla is highly proficient in JavaScript, TypeScript, React, React Native, Node.js, Python, Java, SQL, Docker, Kubernetes, and AWS — with strong expertise across the full stack and cloud architecture.",
+    experience: "Khazimla has 4+ years as a Software Engineer. She currently leads a team at TechCorp Innovations, having previously worked at Digital Solutions Inc. She improved system performance by 40% and cut deployment times by 75%.",
+    education: "Khazimla holds a BSc in Computer Science (Cum Laude) from the University of Cape Town, and holds certifications in AWS and Scrum methodologies.",
+    projects: "Notable projects include a FinTech mobile app with 10k+ users, a cloud-native platform handling 10k+ requests/sec, and an analytics dashboard used by 50+ businesses.",
+    contact: "Reach Khazimla at kmfenyana2@gmail.com or via LinkedIn and GitHub.",
+    default: "I can tell you about Khazimla's skills, experience, education, projects, or contact details. What would you like to know?"
+};
+
+function addMessage(text, isUser = false) {
+    if (!chatMessages) return;
+    const div = document.createElement('div');
+    div.className = `message ${isUser ? 'user' : 'bot'}`;
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.textContent = text;
+    div.appendChild(bubble);
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getBotResponse(msg) {
+    const m = msg.toLowerCase();
+    if (m.match(/skill|tech|stack|language|framework|know/)) return kb.skills;
+    if (m.match(/experience|career|work|role|job|background/)) return kb.experience;
+    if (m.match(/education|degree|university|study|certif/)) return kb.education;
+    if (m.match(/project|built|created|portfolio/)) return kb.projects;
+    if (m.match(/contact|email|reach|connect|linkedin|github/)) return kb.contact;
+    if (m.match(/hello|hi|hey/)) return "Hello! I'm Khazimla's AI assistant. Ask me anything about her background.";
+    return kb.default;
+}
+
+function sendMessage() {
+    if (!userInput) return;
+    const msg = userInput.value.trim();
+    if (!msg) return;
+    addMessage(msg, true);
+    userInput.value = '';
+    setTimeout(() => addMessage(getBotResponse(msg)), 450);
+}
+
+if (sendButton) sendButton.addEventListener('click', sendMessage);
+if (userInput) {
+    userInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') sendMessage();
+    });
+}
+
+const downloadResume = document.getElementById('downloadResume');
+if (downloadResume) {
+    downloadResume.addEventListener('click', e => {
+        e.preventDefault();
+        const content = `<html><head><title>Khazimla Mfenyana — CV</title><style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;padding:0 2rem;color:#111;line-height:1.6}h1{font-size:2rem;margin-bottom:0.25rem}h2{font-size:1.1rem;border-bottom:1px solid #ccc;padding-bottom:0.25rem;margin-top:2rem}h3{margin-bottom:0.1rem}ul{padding-left:1.25rem}li{margin-bottom:0.35rem}.meta{color:#555;font-size:0.9rem}.dates{font-family:monospace;font-size:0.85rem;color:#666}</style></head><body><h1>Khazimla Zamajola Lee-Ann Mfenyana</h1><p class="meta">Software Engineer &amp; Full Stack Developer | kmfenyana2@gmail.com | Cape Town, South Africa</p><h2>Professional Summary</h2><p>Results-driven Software Engineer with 4+ years of experience in full-stack development, mobile architecture, and cloud infrastructure. Passionate about building high-performance applications and mentoring developers.</p><h2>Technical Skills</h2><ul><li>Languages: JavaScript, TypeScript, Python, Java, SQL</li><li>Frontend: React, React Native, Next.js, TailwindCSS</li><li>Backend: Node.js, GraphQL, PostgreSQL, MongoDB</li><li>Cloud & DevOps: AWS, Docker, Kubernetes, CI/CD</li></ul><h2>Experience</h2><h3>Senior Software Engineer — TechCorp Innovations</h3><p class="dates">2022 – Present</p><ul><li>Led team of 5 engineers on enterprise applications</li><li>Architected microservices improving performance by 40%</li><li>Implemented CI/CD reducing deployment from 2hrs to 15min</li></ul><h3>Full Stack Developer — Digital Solutions Inc.</h3><p class="dates">2020 – 2022</p><ul><li>Built 10+ client projects: e-commerce, mobile apps, CMS</li><li>Optimised queries reducing load time by 50%</li></ul><h2>Education</h2><p>BSc Computer Science (Cum Laude) — University of Cape Town</p><h2>Certifications</h2><ul><li>AWS Certified Developer</li><li>Professional Scrum Master I</li></ul></body></html>`;
+        const blob = new Blob([content], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Khazimla_Mfenyana_CV.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+}
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        btn.textContent = 'Message sent ✓';
+        btn.style.background = '#22c55e';
+        setTimeout(() => {
+            btn.innerHTML = 'Send Message <i class="fas fa-arrow-right"></i>';
+            btn.style.background = '';
+            contactForm.reset();
+        }, 3000);
+    });
+}
+
+const scrollEls = document.querySelectorAll('.hidden-until-visible');
+if (scrollEls.length) {
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    scrollEls.forEach(el => scrollObserver.observe(el));
+}
+
+const skillBars = document.querySelectorAll('.skill-bar-fill');
+if (skillBars.length) {
+    const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                setTimeout(() => {
+                    bar.style.width = bar.dataset.width + '%';
+                }, 200);
+                barObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+    skillBars.forEach(b => barObserver.observe(b));
 }

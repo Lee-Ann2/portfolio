@@ -1,171 +1,86 @@
 const themeToggle = document.getElementById('themeToggle');
 if (themeToggle) {
+    const sunIcon = themeToggle.querySelector('.fa-sun');
+    const moonIcon = themeToggle.querySelector('.fa-moon');
+
+    function applyTheme(dark) {
+        if (dark) {
+            document.body.style.setProperty('--paper', '#1a1a1a');
+            document.body.style.setProperty('--paper-2', '#222');
+            document.body.style.setProperty('--white', '#1e1e1e');
+            document.body.style.setProperty('--ink', '#f5f0e8');
+            document.body.style.setProperty('--ink-2', '#e8e4dc');
+            document.body.style.setProperty('--border-light', 'rgba(255,255,255,0.06)');
+            document.body.style.setProperty('--muted', '#888');
+            document.querySelector('body').classList.add('dark-inverted');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+            themeToggle.style.background = '#f5f0e8';
+            themeToggle.querySelector('i.fa-sun').style.color = '#0a0a0a';
+        } else {
+            document.body.style.removeProperty('--paper');
+            document.body.style.removeProperty('--paper-2');
+            document.body.style.removeProperty('--white');
+            document.body.style.removeProperty('--ink');
+            document.body.style.removeProperty('--ink-2');
+            document.body.style.removeProperty('--border-light');
+            document.body.style.removeProperty('--muted');
+            document.querySelector('body').classList.remove('dark-inverted');
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+            themeToggle.style.background = '#0a0a0a';
+            themeToggle.querySelector('i.fa-moon').style.color = '#e8ff00';
+        }
+    }
+
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved === 'dark') applyTheme(true);
+
     themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    });
-    
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-}
-
-const skillItems = document.querySelectorAll('.skill-item');
-if (skillItems.length) {
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-    
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-                const percent = element.dataset.skill;
-                element.style.setProperty('--skill-percent', `${percent}%`);
-                skillObserver.unobserve(element);
-            }
-        });
-    }, observerOptions);
-    
-    skillItems.forEach(item => skillObserver.observe(item));
-}
-
-const chatMessages = document.getElementById('chatMessages');
-const userInput = document.getElementById('userInput');
-const sendButton = document.getElementById('sendMessage');
-
-const knowledgeBase = {
-    skills: "Khazimla is proficient in JavaScript, TypeScript, React, React Native, Node.js, Python, Java, SQL, Docker, Kubernetes, and AWS. She has strong expertise in full-stack development and cloud architecture.",
-    experience: "Khazimla has 4+ years of experience as a Software Engineer. She has worked on enterprise applications, mobile apps, and cloud platforms. She led teams, mentored developers, and improved system performance by 40%.",
-    education: "Khazimla holds a Bachelor's degree in Computer Science from University of Cape Town. She is also certified in AWS and Scrum methodologies.",
-    projects: "Her notable projects include a FinTech mobile app with 10k+ users, a cloud-native platform handling 10k+ requests/sec, and an analytics dashboard used by 50+ businesses.",
-    contact: "You can reach Khazimla at kmfenyana2@gmail.com or connect with her on LinkedIn and GitHub.",
-    default: "I can help you learn about Khazimla's skills, experience, education, projects, or contact information. What would you like to know?"
-};
-
-function addMessage(text, isUser = false) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-    const bubble = document.createElement('div');
-    bubble.className = 'message-bubble';
-    bubble.textContent = text;
-    messageDiv.appendChild(bubble);
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function getBotResponse(userMessage) {
-    const msg = userMessage.toLowerCase();
-    
-    if (msg.match(/skill|technolog|tech|stack|know|language|framework/)) {
-        return knowledgeBase.skills;
-    } else if (msg.match(/experience|career|background|work|role|position|job/)) {
-        return knowledgeBase.experience;
-    } else if (msg.match(/education|degree|university|study|certif|school/)) {
-        return knowledgeBase.education;
-    } else if (msg.match(/project|build|created|developed|portfolio|work sample/)) {
-        return knowledgeBase.projects;
-    } else if (msg.match(/contact|email|reach|linkedin|github|connect/)) {
-        return knowledgeBase.contact;
-    } else if (msg.match(/hello|hi|hey|greetings/)) {
-        return "Hello! I'm Khazimla's AI assistant. How can I help you learn more about her professional background?";
-    } else {
-        return knowledgeBase.default;
-    }
-}
-
-function sendMessage() {
-    const message = userInput.value.trim();
-    if (message) {
-        addMessage(message, true);
-        userInput.value = '';
-        
-        setTimeout(() => {
-            const response = getBotResponse(message);
-            addMessage(response, false);
-        }, 500);
-    }
-}
-
-if (sendButton && userInput) {
-    sendButton.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
+        const isDark = document.body.classList.contains('dark-inverted');
+        applyTheme(!isDark);
+        localStorage.setItem('portfolio-theme', !isDark ? 'dark' : 'light');
     });
 }
 
-const downloadResume = document.getElementById('downloadResume');
-if (downloadResume) {
-    downloadResume.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        const content = `
-            <html>
-            <head><title>Khazimla_Mfenyana_Resume</title></head>
-            <body style="font-family: Arial, sans-serif; padding: 2rem;">
-                <h1>Khazimla Zamajola Lee-Ann Mfenyana</h1>
-                <p><strong>Software Engineer | Full Stack Developer</strong></p>
-                <p>Email: kmfenyana2@gmail.com | Location: South Africa</p>
-                <hr/>
-                <h2>Professional Summary</h2>
-                <p>Results-driven Software Engineer with 4+ years of experience in full-stack development, mobile architecture, and cloud infrastructure. Passionate about building high-performance applications and mentoring junior developers.</p>
-                <h2>Technical Skills</h2>
-                <ul><li>JavaScript/TypeScript, React, React Native, Node.js, Python, Java</li><li>SQL, MongoDB, Docker, Kubernetes, AWS, CI/CD</li></ul>
-                <h2>Work Experience</h2>
-                <p><b>Senior Software Engineer</b> - TechCorp Innovations (2022-Present)<br/>Leading team of 5 developers, architected microservices improving performance by 40%.</p>
-                <p><b>Full Stack Developer</b> - Digital Solutions Inc. (2020-2022)<br/>Built 10+ client projects including e-commerce platforms and mobile apps.</p>
-                <h2>Education</h2>
-                <p>BSc Computer Science (Cum Laude) - University of Cape Town</p>
-                <h2>Certifications</h2>
-                <p>AWS Certified Developer, Professional Scrum Master I</p>
-            </body>
-            </html>
-        `;
-        
-        const blob = new Blob([content], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Khazimla_Mfenyana_Resume.pdf';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    });
-}
+const photoInput = document.getElementById('photoInput');
+const photoFrame = document.getElementById('photoFrame');
+const uploadIcon = document.getElementById('uploadIcon');
 
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for your message! I will get back to you soon.');
-        contactForm.reset();
-    });
-}
+if (photoInput && photoFrame) {
+    photoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            photoFrame.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = ev.target.result;
+            img.style.cssText = 'width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:2px;';
+            photoFrame.style.position = 'relative';
+            photoFrame.style.border = '2px solid rgba(10,10,10,0.15)';
+            photoFrame.appendChild(img);
 
-const animateElements = document.querySelectorAll('.skill-category, .project-card, .timeline-item, .contact-card');
-if (animateElements.length) {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const scrollObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                scrollObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        scrollObserver.observe(el);
+            const editBtn = document.createElement('div');
+            editBtn.style.cssText = 'position:absolute;bottom:1rem;right:1rem;background:rgba(0,0,0,0.7);color:#e8ff00;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.875rem;z-index:10;transition:background 0.2s;';
+            editBtn.innerHTML = '<i class="fas fa-camera"></i>';
+            editBtn.title = 'Change photo';
+
+            const newInput = document.createElement('input');
+            newInput.type = 'file';
+            newInput.accept = 'image/*';
+            newInput.style.cssText = 'position:absolute;inset:0;opacity:0;cursor:pointer;z-index:11;';
+            newInput.addEventListener('change', (ev2) => {
+                const f2 = ev2.target.files[0];
+                if (!f2) return;
+                const r2 = new FileReader();
+                r2.onload = (res) => { img.src = res.target.result; };
+                r2.readAsDataURL(f2);
+            });
+
+            photoFrame.appendChild(editBtn);
+            photoFrame.appendChild(newInput);
+        };
+        reader.readAsDataURL(file);
     });
 }
