@@ -1538,11 +1538,15 @@ body {
 
 @media (max-width: 1024px) {
     .about-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-wrapper { grid-template-columns: 1fr; }
-    .hero-image-wrap { max-width: 320px; }
+    .hero-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-image-wrap { max-width: 280px; margin: 0 auto; }
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-inner { padding: 0 1.5rem; }
+    .portfolio-container { padding: 7rem 1.5rem 3rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .about-section { padding: 4rem 1.5rem; }
 }
 
 @media (max-width: 768px) {
@@ -1558,15 +1562,96 @@ body {
         gap: 2rem;
         z-index: 99;
     }
-    .nav-menu.active a { font-size: 1.5rem; }
-    .nav-toggle { display: block; }
+    .nav-menu.active a { font-size: 1.25rem; color: var(--ink); }
+    .nav-toggle { display: block; z-index: 100; position: relative; }
     .hero-bg-text { display: none; }
-    .hero { padding: 7rem 1.5rem 3rem; }
-    .about-section { padding: 4rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .portfolio-container { padding: 6rem 1.5rem 3rem; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    .hero-headline { font-size: clamp(2.5rem, 8vw, 3.5rem); }
+    .hero-sub { font-size: 1rem; height: auto; min-height: 2.2rem; }
+    .hero-body { font-size: 1rem; max-width: 100%; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+    .btn-main, .btn-ghost { justify-content: center; text-align: center; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1.5rem; }
     .stat-divider { display: none; }
+    .stat-num { font-size: 2rem; }
+    .stat-plus { font-size: 1.25rem; }
+    .stat-label { font-size: 0.65rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-card { padding: 2rem 1.5rem; }
+    .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .project-card { max-width: 100%; }
+    .skills-section, .projects-section, .experience-section, .ai-section, .contact-section { padding: 3rem 0; }
+    .section-desc { margin-bottom: 2rem; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .footer-right { width: 100%; min-width: auto; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .tech-label { display: none; }
+    .marquee-wrap { padding-left: 1rem; }
+    .portfolio-hero { margin-bottom: 3rem; }
+    .hero-name { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+    .hero-bio { font-size: 0.9375rem; }
+    .hero-actions-port { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-secondary-port { justify-content: center; text-align: center; }
+    .hero-social { justify-content: center; }
+    .hero-wrapper { gap: 2rem; }
+    .photo-frame { max-width: 260px; margin: 0 auto; }
+    .timeline-item { padding-left: 1.5rem; }
+    .timeline::before { left: 0; }
+    .timeline-dot { left: -5px; }
+    .chat-wrap { max-width: 100%; }
+    .chat-messages { height: 280px; padding: 1rem; }
+    .message-bubble { max-width: 85%; font-size: 0.85rem; padding: 0.625rem 0.875rem; }
+    .contact-form-wrap { padding: 1.5rem; }
+    .contact-card { padding: 1rem; }
+    .cursor-dot, .cursor-ring { display: none; }
+    body { cursor: auto; }
+}
+
+@media (max-width: 480px) {
+    .nav-logo { font-size: 1.25rem; }
+    .nav-container { padding: 1rem 1.25rem; }
+    .portfolio-container { padding: 5rem 1rem 2rem; }
+    .hero { padding: 5rem 1rem 2rem; }
+    .hero-headline { font-size: clamp(2rem, 7vw, 2.8rem); margin-bottom: 1rem; }
+    .hero-eyebrow { font-size: 0.7rem; margin-bottom: 1rem; }
+    .hero-stats { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .stat { flex-direction: row; align-items: baseline; gap: 0.75rem; width: 100%; justify-content: space-between; }
+    .stat-num { font-size: 1.75rem; }
+    .stat-label { font-size: 0.7rem; }
+    .section-header { font-size: 1rem; }
+    .section-title { font-size: 1.5rem; }
+    .skill-category { padding: 1.25rem; }
+    .project-body { padding: 1rem; }
+    .project-body h3 { font-size: 1rem; }
+    .contact-cards { gap: 0.5rem; }
+    .contact-card { padding: 0.875rem; }
+    .contact-card-icon { width: 32px; height: 32px; font-size: 0.875rem; }
+    .contact-card-text a, .contact-card-text span { font-size: 0.8rem; }
+    .form-input, .form-textarea { padding: 0.625rem 0.875rem; font-size: 0.875rem; }
+    .send-btn { padding: 0.625rem 1rem; }
+    .footer-inner { gap: 1.5rem; }
+    .footer-left h2 { font-size: 1.5rem; }
+    .footer-left p { font-size: 0.8125rem; }
+    .footer-link { font-size: 0.8125rem; padding-bottom: 0.75rem; }
+    .theme-toggle { width: 40px; height: 40px; bottom: 1rem; right: 1rem; }
+    .theme-toggle i { font-size: 0.875rem; }
+}
+
+@media (max-width: 380px) {
+    .hero-headline { font-size: clamp(1.8rem, 6vw, 2.2rem); }
+    .hero-sub { font-size: 0.875rem; }
+    .hero-body { font-size: 0.875rem; }
+    .btn-main, .btn-ghost { padding: 0.75rem 1.25rem; font-size: 0.8125rem; }
+    .section-header { font-size: 0.875rem; }
+    .skill-name { font-size: 0.8125rem; }
+    .project-body p { font-size: 0.75rem; }
+    .project-tags span { font-size: 0.625rem; }
+    .timeline-content h3 { font-size: 1rem; }
+    .timeline-content h4 { font-size: 0.75rem; }
+    .timeline-content p, .timeline-content li { font-size: 0.75rem; }
+    .chat-header-title { font-size: 0.7rem; }
+    .message-bubble { font-size: 0.75rem; }
+    .chat-input { font-size: 0.8125rem; padding: 0.5rem 0.75rem; }
+    .send-btn { font-size: 0.75rem; padding: 0.5rem 0.875rem; }
+    .portfolio-footer-bar { padding: 1rem; font-size: 0.625rem; flex-direction: column; gap: 0.5rem; text-align: center; }
 }
