@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khazimla Mfenyana · Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e2e0db;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* single page resume — exactly one page in print / PDF */
+        .resume {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+            border-radius: 6px;
+            padding: 1.6rem 2rem 1.8rem 2rem;
+            transition: all 0.2s;
+        }
+
+        /* TYPOGRAPHY — compact, professional, readable */
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1e2a3a;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 13px;
+            font-weight: 500;
+            color: #2c5f8a;
+            margin-bottom: 0.4rem;
+            border-left: 3px solid #2c5f8a;
+            padding-left: 10px;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 9px;
+            color: #4b5563;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
+            gap: 0.5rem;
+        }
+
+        .contact-left a, .contact-right a {
+            color: #2c5f8a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-left a:hover, .contact-right a:hover {
+            text-decoration: underline;
+        }
+
+        /* section headers */
+        .section-title {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #1e3a5f;
+            border-bottom: 1.5px solid #dce4ec;
+            padding-bottom: 3px;
+            margin: 0.8rem 0 0.6rem 0;
+        }
+
+        /* summary */
+        .summary-text {
+            font-size: 9.5px;
+            line-height: 1.45;
+            color: #1f2937;
+            text-align: justify;
+            margin-bottom: 0.25rem;
+        }
+
+        /* two-column layout for skills + core integration */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .skill-cat {
+            font-size: 10px;
+            font-weight: 800;
+            color: #1e3a5f;
+            margin-bottom: 5px;
+        }
+
+        .skill-items {
+            font-size: 8.8px;
+            line-height: 1.45;
+            color: #2d3a46;
+            margin-bottom: 0.6rem;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 4px;
+        }
+
+        .badge {
+            background: #eef2f6;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 7.5px;
+            font-weight: 500;
+            color: #1e3a5f;
+        }
+
+        /* education & job */
+        .edu-item, .job-item, .project-item {
+            margin-bottom: 0.7rem;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .item-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .item-date {
+            font-size: 8px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .item-sub {
+            font-size: 9px;
+            font-weight: 500;
+            color: #2c5f8a;
+            margin-bottom: 4px;
+        }
+
+        .desc-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 4px;
+        }
+
+        .desc-list li {
+            font-size: 8.8px;
+            line-height: 1.4;
+            color: #2c3e4e;
+            margin-bottom: 4px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .desc-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 2px;
+            color: #2c5f8a;
+            font-size: 8px;
+        }
+
+        /* projects in compact rows */
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .project-name {
+            font-size: 10px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .project-stack {
+            font-size: 7.5px;
+            font-weight: 500;
+            color: #4a6a85;
+            letter-spacing: 0.2px;
+        }
+
+        .integration-highlight {
+            background: #f8fafc;
+            border-left: 2px solid #2c5f8a;
+            padding: 0.4rem 0.8rem;
+            margin: 0.6rem 0;
+            font-size: 8.5px;
+            color: #1e2f3d;
+            border-radius: 0 8px 8px 0;
+        }
+
+        hr {
+            margin: 0.3rem 0;
+            border: 0;
+            height: 0;
+            border-top: 1px solid #eef2f5;
+        }
+
+        /* ensure ONE printed page */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .resume {
+                max-width: 100%;
+                box-shadow: none;
+                padding: 0.15in 0.2in;
+                border-radius: 0;
+            }
+            .badge {
+                background: #eef2f6;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .section-title {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .resume {
+                padding: 1.2rem;
+            }
+            .two-col-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <!-- HEADER -->
+        <h1>KHAZIMLA ZAMAJOLA LEE-ANN MFENYANA</h1>
+        <div class="subhead">Full‑Stack Developer · Software Engineer · Systems Integration</div>
+        <div class="contact-row">
+            <div class="contact-left">📍 Cape Town, South Africa &nbsp;|&nbsp; 📞 +27 640 646 432 &nbsp;|&nbsp; ✉️ <a href="mailto:kmfenyana2@gmail.com">kmfenyana2@gmail.com</a></div>
+            <div class="contact-right">
+                <a href="https://github.com/Lee-Ann2" target="_blank">github/Lee-Ann2</a> &nbsp;|&nbsp;
+                <a href="https://linkedin.com/in/khazimla-mfenyana-6912a5305" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+        <div class="section-title">PROFILE SUMMARY</div>
+        <div class="summary-text">
+            Software Engineering student at <strong>WeThinkCode_</strong> with full‑stack training and engineering foundation from Joe Slovo High School. 
+            Built <strong>20+ web applications</strong> integrating REST APIs, Google Maps, and real‑time game data. Strong Java OOP, algorithms, and systems thinking. 
+            Passionate about clean architecture, API orchestration, and delivering end‑to‑end solutions. Seeking full‑time roles in <strong>Full‑Stack Development, Software Engineering, or Systems Integration</strong>.
+        </div>
+        <div class="section-title">CORE TECHNICAL SKILLS</div>
+        <div class="two-col-grid">
+            <div>
+                <div class="skill-cat">LANGUAGES & FRONT-END</div>
+                <div class="skill-items">JavaScript (ES6+) · TypeScript (learning) · HTML5/CSS3 · React.js · Tailwind CSS · Bootstrap · Material UI · Responsive Design</div>
+                <div class="skill-cat" style="margin-top: 8px;">BACK‑END & DATABASES</div>
+                <div class="skill-items">Java (OOP) · Python · SQL · REST API Integration · JSON · Local Storage</div>
+                <div class="skill-cat" style="margin-top: 8px;">TOOLS & DEVOPS</div>
+                <div class="skill-items">Git/GitHub · VS Code · IntelliJ IDEA · Figma · Netlify · Vercel · Chrome DevTools</div>
+            </div>
+            <div>
+                <div class="skill-cat">SYSTEMS INTEGRATION</div>
+                <div class="skill-items">Third‑party API orchestration · Google Maps API · RAWG API · Context API · External service mapping · Real‑time data fetching · Event‑driven architecture</div>
+                <div class="skill-cat" style="margin-top: 8px;">METHODOLOGIES</div>
+                <div class="badge-list">
+                    <span class="badge">Agile/Scrum</span>
+                    <span class="badge">Pair Programming</span>
+                    <span class="badge">Code Review</span>
+                    <span class="badge">Mobile-First</span>
+                    <span class="badge">Systems Thinking</span>
+                    <span class="badge">Version Control</span>
+                </div>
+            </div>
+        </div>
+        <div class="section-title">TECHNICAL EDUCATION</div>
+        
+        <div class="edu-item">
+            <div class="item-header">
+                <span class="item-title">Full‑Stack Software Engineering</span>
+                <span class="item-date">Feb 2025 – May 2026</span>
+            </div>
+            <div class="item-sub">WeThinkCode_ · Cape Town, South Africa</div>
+            <ul class="desc-list">
+                <li>Immersive peer‑to‑peer: algorithms, data structures, system design, 15+ group projects</li>
+                <li>Java OOP development using IntelliJ IDEA & front‑end specialization with API integrations</li>
+                <li>Collaborated on real‑world workflows, version control, and agile delivery</li>
+            </ul>
+        </div>
+
+        <div class="edu-item">
+            <div class="item-header">
+                <span class="item-title">Front‑End Development</span>
+                <span class="item-date">Feb 2024 – Nov 2024</span>
+            </div>
+            <div class="item-sub">ALX Africa · Remote</div>
+            <ul class="desc-list">
+                <li>Built 20+ responsive web apps (e‑commerce, dashboards, API‑driven platforms)</li>
+                <li>Achieved 90%+ assessment scores, modern JavaScript and REST consumption</li>
+            </ul>
+        </div>
+
+        <div class="edu-item">
+            <div class="item-header">
+                <span class="item-title">National Senior Certificate (Engineering Stream)</span>
+                <span class="item-date">2018 – 2022</span>
+            </div>
+            <div class="item-sub">Joe Slovo Engineering High School · Cape Town</div>
+            <ul class="desc-list">
+                <li>Mathematics, Physical Sciences, Engineering Graphics & Design, Electrical Engineering (Power Systems)</li>
+                <li>Robotics & coding club — analytical thinking & technical problem‑solving foundation</li>
+            </ul>
+        </div>
+        <div class="section-title">KEY PROJECTS (FULL‑STACK & INTEGRATION)</div>
+        
+        <div class="project-item">
+            <div class="project-header">
+                <span class="project-name">Live Gaming Platform · RAWG API Integration</span>
+                <span class="project-stack">JavaScript · DOM · LocalStorage · Vercel</span>
+            </div>
+            <ul class="desc-list">
+                <li>Fetches 500+ live games from RAWG API in real time, search & genre filters.</li>
+                <li>Local storage for saved streams & persistent game library — demonstrates API orchestration and front‑end state.</li>
+                <li>Deployed on Vercel with optimized caching; integration layer built from scratch.</li>
+            </ul>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <span class="project-name">E‑Commerce Product Page · Google Maps + Context API</span>
+                <span class="project-stack">React · Tailwind · Context API · Google Maps API</span>
+            </div>
+            <ul class="desc-list">
+                <li>Product filtering, quantity selection, cart total + embedded Google Maps showing cafe locations from curated list.</li>
+                <li>Integrated external mapping API with dynamic markers, third‑party service orchestration in a single‑page app.</li>
+                <li>Reduced re‑renders by using memoization, consistent with modern full‑stack patterns.</li>
+            </ul>
+        </div>
+
+        <div class="project-item">
+            <div class="project-header">
+                <span class="project-name">Portfolio & Performance Dashboard</span>
+                <span class="project-stack">HTML5 · CSS3 · JS · Lighthouse 98</span>
+            </div>
+            <ul class="desc-list">
+                <li>Responsive portfolio with dark/light mode, smooth scroll, and dynamic project filtering.</li>
+                <li>98 Lighthouse performance score — asset optimization and accessibility focus.</li>
+                <li>Demonstrates systems thinking from UI to performance budgets.</li>
+            </ul>
+        </div>
+
+        <div class="integration-highlight">
+            <strong>🔌 Systems Integration experience:</strong> REST API integration (RAWG, Google Maps), third‑party service orchestration, local storage for offline persistence, Java OOP fundamentals for backend logic, Git-based collaborative integration workflows.
+        </div>
+        <div class="section-title">LEADERSHIP & COMMUNITY</div>
+        
+        <div class="job-item">
+            <div class="item-header">
+                <span class="item-title">Recruitment Ambassador (IDC Role)</span>
+                <span class="item-date">2025 – Present</span>
+            </div>
+            <div class="item-sub">WeThinkCode_ · Cape Town</div>
+            <ul class="desc-list">
+                <li>Represent academy at outreach events, increasing candidate engagement by 20%.</li>
+                <li>Guide applicants through technical admissions, bridging communication between recruitment and engineering teams.</li>
+            </ul>
+        </div>
+
+        <div class="job-item">
+            <div class="item-header">
+                <span class="item-title">Student Mentor · Front‑End & Pair Programming</span>
+                <span class="item-date">2025 – Present</span>
+            </div>
+            <div class="item-sub">WeThinkCode_ · Cape Town</div>
+            <ul class="desc-list">
+                <li>Mentor 15+ incoming students: code reviews, study groups, JavaScript/React fundamentals.</li>
+                <li>Organize pair programming sessions that improved module pass rates.</li>
+            </ul>
+        </div>
+        <div class="section-title">CERTIFICATIONS & AVAILABILITY</div>
+        <div class="two-col-grid" style="margin-top: 0;">
+            <div>
+                <div class="skill-items">✔ ALX Front‑End Development Certificate (2024)<br>✔ Git & GitHub Essentials (2024)<br>✔ WeThinkCode_ Software Engineering (in progress 2026)</div>
+            </div>
+            <div>
+                <div class="skill-items"><strong>📍 Immediate availability</strong> · Full‑time / Internship<br>🌍 Cape Town (Remote · Hybrid · On‑site)<br>✅ Open to Full‑Stack, Software Engineer, Systems Integration roles</div>
+            </div>
+        </div>
+        <hr>
+        <div style="font-size: 7px; text-align: center; color: #8b9eb0; margin-top: 0.5rem;">References available upon request · Built for impact & systems thinking</div>
+    </div>
+</body>
+</html>
