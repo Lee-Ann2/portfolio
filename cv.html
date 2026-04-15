@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khazimla Mfenyana · Front-End Developer CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e5e0da;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .cv {
+            max-width: 1050px;
+            width: 100%;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 2.2rem;
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #6b4c3b;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .contact-bar {
+            text-align: center;
+            font-size: 9.5px;
+            color: #6b6b6b;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #e8e2dc;
+            padding-bottom: 0.75rem;
+        }
+
+        .contact-bar a {
+            color: #6b4c3b;
+            text-decoration: none;
+        }
+
+        .separator {
+            width: 50px;
+            height: 2px;
+            background: #6b4c3b;
+            margin: 0.5rem auto 1rem;
+        }
+
+        .section {
+            margin-top: 1rem;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            color: #6b4c3b;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e8e2dc;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        .summary {
+            font-size: 10px;
+            line-height: 1.45;
+            color: #2c2c2c;
+            margin-bottom: 0.25rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #6b4c3b;
+        }
+
+        .bold-number {
+            font-weight: 800;
+            color: #6b4c3b;
+        }
+
+        .competencies {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 0.25rem 0 0.25rem;
+        }
+
+        .comp-cat h4 {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #6b4c3b;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .comp-cat ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comp-cat li {
+            font-size: 9px;
+            color: #3a3a3a;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .comp-cat li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #6b4c3b;
+            font-size: 8px;
+        }
+
+        .edu-item {
+            margin-bottom: 0.75rem;
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .edu-degree {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .edu-date {
+            font-size: 8.5px;
+            color: #8b8b8b;
+            font-style: italic;
+        }
+
+        .edu-school {
+            font-size: 9.5px;
+            font-weight: 500;
+            color: #6b4c3b;
+            margin-bottom: 4px;
+        }
+
+        .edu-list {
+            list-style: none;
+            padding-left: 14px;
+            margin-top: 4px;
+        }
+
+        .edu-list li {
+            font-size: 9px;
+            color: #3a3a3a;
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .edu-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6b4c3b;
+        }
+
+        .job {
+            margin-bottom: 0.9rem;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .job-title {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .job-date {
+            font-size: 8.5px;
+            color: #8b8b8b;
+            font-style: italic;
+        }
+
+        .job-company {
+            font-size: 9.5px;
+            font-weight: 500;
+            color: #6b4c3b;
+            margin-bottom: 4px;
+        }
+
+        .job-description {
+            list-style: none;
+            margin-top: 4px;
+            padding-left: 0;
+        }
+
+        .job-description li {
+            font-size: 9px;
+            line-height: 1.4;
+            color: #3a3a3a;
+            margin-bottom: 4px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .job-description li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6b4c3b;
+            font-weight: 700;
+            font-size: 9px;
+        }
+
+        .project {
+            margin-bottom: 0.75rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 2px;
+        }
+
+        .project-name {
+            font-size: 10px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .project-date {
+            font-size: 8px;
+            color: #8b8b8b;
+            font-style: italic;
+        }
+
+        .project-description {
+            list-style: none;
+            margin-top: 3px;
+            padding-left: 0;
+        }
+
+        .project-description li {
+            font-size: 8.5px;
+            line-height: 1.4;
+            color: #3a3a3a;
+            margin-bottom: 3px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .project-description li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #6b4c3b;
+            font-size: 8px;
+        }
+
+        .skills-block {
+            margin-top: 0.25rem;
+        }
+
+        .skill-line {
+            font-size: 9px;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .skill-cat {
+            font-weight: 800;
+            color: #6b4c3b;
+        }
+
+        .cert-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px 1rem;
+            margin-top: 4px;
+        }
+
+        .cert-list li {
+            font-size: 8.5px;
+            margin-bottom: 3px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .cert-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6b4c3b;
+            font-size: 8px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .cv {
+                box-shadow: none;
+                padding: 0.2in;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .competencies {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .cert-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv">
+        <!-- Name -->
+        <h1>KHAZIMLA ZAMAJOLA LEE-ANN MFENYANA</h1>
+        <div class="contact-bar">
+            Cape Town, South Africa · +27 640 646 432 · <a href="mailto:kmfenyana2@gmail.com">kmfenyana2@gmail.com</a><br>
+            <a href="https://github.com/Lee-Ann2" target="_blank">github.com/Lee-Ann2</a> · <a href="www.linkedin.com/in/khazimla-mfenyana-6912a5305/" target="_blank">www.linkedin.com/in/khazimla-mfenyana-6912a5305</a>
+        </div>
+        <div class="separator"></div>
+        <div class="section">
+            <div class="section-header">PROFESSIONAL SUMMARY</div>
+            <div class="summary">
+                Passionate <span class="highlight">Front-End Developer</span> with hands-on experience building responsive, user-centered web applications. 
+                Combining engineering discipline from <span class="highlight">Joe Slovo Engineering High School</span> with intensive software development training at 
+                <span class="highlight">WeThinkCode</span> and <span class="highlight">ALX</span>. Strong foundation in modern JavaScript frameworks, 
+                Java, and clean code principles. Committed to creating accessible, performant digital experiences that solve real-world problems.
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">CORE COMPETENCIES</div>
+            <div class="competencies">
+                <div class="comp-cat">
+                    <h4>FRONT-END DEVELOPMENT</h4>
+                    <ul>
+                        <li>React.js</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Python</li>
+                        <li>HTML5/CSS3</li>
+                        <li>Responsive Design</li>
+                        <li>REST API Integration</li>
+                    </ul>
+                </div>
+                <div class="comp-cat">
+                    <h4>TOOLS & TECHNOLOGIES</h4>
+                    <ul>
+                        <li>Tailwind CSS / Bootstrap</li>
+                        <li>Git & GitHub</li>
+                        <li>Figma / VS Code</li>
+                        <li>IntelliJ IDEA</li>
+                        <li>Java (OOP Fundamentals)</li>
+                    </ul>
+                </div>
+                <div class="comp-cat">
+                    <h4>PROFESSIONAL SKILLS</h4>
+                    <ul>
+                        <li>Agile Collaboration</li>
+                        <li>Pair Programming</li>
+                        <li>Problem Solving</li>
+                        <li>Team Communication</li>
+                        <li>Recruitment & Outreach</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">TECHNICAL EDUCATION</div>
+            
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span class="edu-degree">Full-Stack Software Engineering</span>
+                    <span class="edu-date">Feb 2025 – May 2026</span>
+                </div>
+                <div class="edu-school">WeThinkCode_ · Cape Town, South Africa</div>
+                <ul class="edu-list">
+                    <li>Immersive peer-to-peer learning environment focused on practical software development</li>
+                    <li>Mastered algorithms, data structures, and system design through project-based learning</li>
+                    <li>Collaborated on 15+ group projects simulating real-world development workflows</li>
+                    <li>Specialized in front-end technologies and user interface development</li>
+                    <li>Java development using IntelliJ IDEA</li>
+                </ul>
+            </div>
+
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span class="edu-degree">Front-End Development</span>
+                    <span class="edu-date">Feb 2025 – Nov 2025</span>
+                </div>
+                <div class="edu-school">ALX Africa · Remote</div>
+                <ul class="edu-list">
+                    <li>Intensive program focused on modern front-end technologies</li>
+                    <li>Built 20+ responsive web applications using HTML, CSS, and JavaScript</li>
+                    <li>Completed projects including e-commerce interfaces, dashboards, and interactive web apps</li>
+                    <li>Achieved 90%+ scores on all major assessments</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">FORMAL EDUCATION</div>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span class="edu-degree">National Senior Certificate</span>
+                    <span class="edu-date">2018 – 2022</span>
+                </div>
+                <div class="edu-school">Joe Slovo Engineering High School · Cape Town, South Africa</div>
+                <ul class="edu-list">
+                    <li>Focus: Mathematics, Physical Sciences, Engineering Graphics & Design, Electrical Engineering(Power Systems)</li>
+                    <li>Developed analytical thinking and technical problem-solving foundation</li>
+                    <li>Participated in robotics and coding club</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">SELECTED PROJECTS</div>
+            
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Personal Portfolio Website</span>
+                    <span class="project-date">2025 – Present</span>
+                </div>
+                <ul class="project-description">
+                    <li>Designed and developed responsive portfolio showcasing front-end skills</li>
+                    <li>Built with HTML5, CSS3, and JavaScript with interactive UI components</li>
+                    <li>Implemented dark/light mode toggle and smooth scroll animations</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">E-Commerce Product Page</span>
+                    <span class="project-date">2025</span>
+                </div>
+                <ul class="project-description">
+                    <li>Created fully responsive product listing page with shopping cart functionality</li>
+                    <li>Technologies: React native, Tailwind CSS, Context API for state management</li>
+                    <li>Features include product filtering, quantity selection, google maps(API), and cart total calculation</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <span class="project-name">Gaming Platform</span>
+                    <span class="project-date">2025</span>
+                </div>
+                <ul class="project-description">
+                    <li>Developed a gaming platform.</li>
+                    <li>JavaScript DOM manipulation and local storage for live streams and plathora of games.</li>
+                    <li>Deployed on Vercel with 98% Lighthouse performance score</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">TECHNICAL SKILLS</div>
+            <div class="skills-block">
+                <div class="skill-line"><span class="skill-cat">Languages:</span> JavaScript (ES6+), HTML5, CSS3, Java (OOP), TypeScript (Learning), Python, SQL</div>
+                <div class="skill-line"><span class="skill-cat">Frameworks & Libraries:</span> React.js, Tailwind CSS, Bootstrap, Material UI</div>
+                <div class="skill-line"><span class="skill-cat">Tools:</span> Git, GitHub, VS Code, IntelliJ IDEA, Figma, Chrome DevTools, Netlify, Vercel, Excel, Google workspace</div>
+                <div class="skill-line"><span class="skill-cat">Methodologies:</span> Agile, Scrum, Pair Programming, Code Review, Mobile-First Design</div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">CERTIFICATIONS</div>
+            <ul class="cert-list">
+                <li>ALX Front-End Development Certificate — 2024</li>
+                <li>WeThinkCode_ Software Engineering — In Progress (2026)</li>
+                <li>Git & GitHub Essentials — 2024</li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="section-header">VOLUNTEER & COMMUNITY</div>
+            
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Recruitment Ambassador (IDC Role)</span>
+                    <span class="job-date">2025 – Present</span>
+                </div>
+                <div class="job-company">WeThinkCode_ · Cape Town, South Africa</div>
+                <ul class="job-description">
+                    <li>Represent WeThinkCode_ at recruitment events and outreach programs</li>
+                    <li>Engage with prospective students, guiding them through the application process</li>
+                    <li>Share personal journey and technical education experience to inspire future candidates</li>
+                    <li>Collaborate with the recruitment team to improve candidate engagement strategies</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Student Mentor</span>
+                    <span class="job-date">2025 – Present</span>
+                </div>
+                <div class="job-company">WeThinkCode_ · Cape Town, South Africa</div>
+                <ul class="job-description">
+                    <li>Mentor incoming students on coding fundamentals and pair programming</li>
+                    <li>Organize study groups and code review sessions</li>
+                    <li>Provide technical support and guidance for front-end development projects</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">AVAILABILITY</div>
+            <div class="summary" style="margin-bottom: 0;">
+                Open to <span class="highlight">full-time front-end development roles</span> and <span class="highlight">internship opportunities</span> starting immediately. 
+                Based in Cape Town, open to remote, hybrid, and on-site work arrangements.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
